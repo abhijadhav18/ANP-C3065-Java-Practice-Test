@@ -5,15 +5,21 @@ import java.util.LinkedList;
 import com.mymart.model.Product;
 
 public class ProductDAO {
-	LinkedList<Product> linkedlist = new LinkedList<Product>();
+	private static LinkedList<Product> ll = new LinkedList<Product>();
 	
-	public void addProduct() {
-		int pd=
+	public boolean addProduct(Product pd) {
+		boolean addStatus=false;
+		ll.add(pd);
+		System.out.println("Hello");
+		addStatus=true;
+		return addStatus;
+		
 	}
 	
-	public Product getAllProduct() {
-		return 
-	} 
+	public LinkedList<Product>getAllProducts(){
+		return ll;
+	}
+
 	
 	
 	

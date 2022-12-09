@@ -32,7 +32,7 @@ public class Product {
 	public double getProductPrice() {
 		return productPrice;
 	}
-	
+	@Override
 	public String toString(){ 
 		return "[productId="+productId+" productName="+productName+" productPrice="+productPrice+"]";
 

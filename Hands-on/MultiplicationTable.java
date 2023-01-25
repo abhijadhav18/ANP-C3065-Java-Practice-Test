@@ -15,7 +15,7 @@ public class MultiplicationTable extends Thread{
 		try {
 			for(int i=1;i<=10;i++) {
 				//This Sleep() helps to execute the main method with delay of 1500 millisecond
-				Thread.sleep(-1500);
+				Thread.sleep(1500);
 				sum=a*i;
 				
 				System.out.println(sum);

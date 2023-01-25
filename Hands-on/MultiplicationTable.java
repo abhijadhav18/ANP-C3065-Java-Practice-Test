@@ -38,7 +38,7 @@ public class MultiplicationTable extends Thread{
 		
 		//With The Help Of Instance We Are Calling The Start Method
 		m.start();
-
+		
 	}
 
 }

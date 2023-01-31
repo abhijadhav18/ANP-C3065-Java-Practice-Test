@@ -1,0 +1,242 @@
+Name - Abhishek Bharat Jadhav
+
+Assignment-1
+
+
+mysql> use db1;
+Database changed
+mysql> CREATE TABLE Persons (PersonID int,Name varchar(255),Address varchar(
+255),Age int);
+Query OK, 0 rows affected (0.22 sec)
+
+mysql> INSERT INTO Persons Values (1,'Abhishek','Pune',22);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT INTO Persons Values (2,'Kaustubh','Mumbai',22);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> INSERT INTO Persons Values (3,'Pratik','Pimpri',24);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> desc Persons;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| PersonID | int          | YES  |     | NULL    |       |
+| Name     | varchar(255) | YES  |     | NULL    |       |
+| Address  | varchar(255) | YES  |     | NULL    |       |
+| Age      | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Select * from Persons;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        1 | Abhishek | Pune    |   22 |
+|        2 | Kaustubh | Mumbai  |   22 |
+|        3 | Pratik   | Pimpri  |   24 |
++----------+----------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> Select Count(PersonID),Name From Persons Group By Name Order By Count(PersonID) DESC;
++-----------------+----------+
+| Count(PersonID) | Name     |
++-----------------+----------+
+|               1 | Abhishek |
+|               1 | Kaustubh |
+|               1 | Pratik   |
++-----------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Select Name,Age From Persons Group By Name,Age HAVING age=4;
++------+------+
+| Name | Age  |
++------+------+
+| Shiv |    4 |
++------+------+
+1 row in set (0.00 sec)
+
+
+mysql> SELECT * FROM Persons Where Age=22;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        1 | Abhishek | Pune    |   22 |
+|        2 | Kaustubh | Mumbai  |   22 |
++----------+----------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Persons Where Age BETWEEN 22 AND 24;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        1 | Abhishek | Pune    |   22 |
+|        2 | Kaustubh | Mumbai  |   22 |
+|        3 | Pratik   | Pimpri  |   24 |
++----------+----------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Persons Where Age BETWEEN 20 AND 22;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        1 | Abhishek | Pune    |   22 |
+|        2 | Kaustubh | Mumbai  |   22 |
++----------+----------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Persons Where Name LIKE 'A%';
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        1 | Abhishek | Pune    |   22 |
++----------+----------+---------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Persons Where Address IN ('Pune','Pimpri');
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        1 | Abhishek | Pune    |   22 |
+|        3 | Pratik   | Pimpri  |   24 |
++----------+----------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> Update Persons SET Age=21,Name='Abhi' Where PersonID=1;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> desc Persons;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| PersonID | int          | YES  |     | NULL    |       |
+| Name     | varchar(255) | YES  |     | NULL    |       |
+| Address  | varchar(255) | YES  |     | NULL    |       |
+| Age      | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> Select * from Persons;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        1 | Abhi     | Pune    |   21 |
+|        2 | Kaustubh | Mumbai  |   22 |
+|        3 | Pratik   | Pimpri  |   24 |
++----------+----------+---------+------+
+3 rows in set (0.00 sec)
+
+mysql> Delete From Persons Where Name='Abhi';
+Query OK, 1 row affected (0.08 sec)
+
+mysql> Select * from Persons;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        2 | Kaustubh | Mumbai  |   22 |
+|        3 | Pratik   | Pimpri  |   24 |
++----------+----------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> Select Count(PersonID) From Persons;
++-----------------+
+| Count(PersonID) |
++-----------------+
+|               2 |
++-----------------+
+1 row in set (0.03 sec)
+
+mysql> Select * from Persons;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        2 | Kaustubh | Mumbai  |   22 |
+|        3 | Pratik   | Pimpri  |   24 |
++----------+----------+---------+------+
+2 rows in set (0.00 sec)
+
+mysql> Alter Table Persons ADD Bike varchar(20);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Select * from Persons;
++----------+----------+---------+------+------+
+| PersonID | Name     | Address | Age  | Bike |
++----------+----------+---------+------+------+
+|        2 | Kaustubh | Mumbai  |   22 | NULL |
+|        3 | Pratik   | Pimpri  |   24 | NULL |
++----------+----------+---------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> Insert Into Persons (Bike) Values ('MT-15');
+Query OK, 1 row affected (0.20 sec)
+
+mysql> Select * from Persons;
++----------+----------+---------+------+-------+
+| PersonID | Name     | Address | Age  | Bike  |
++----------+----------+---------+------+-------+
+|        2 | Kaustubh | Mumbai  |   22 | NULL  |
+|        3 | Pratik   | Pimpri  |   24 | NULL  |
+|     NULL | NULL     | NULL    | NULL | MT-15 |
++----------+----------+---------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> Delete From Persons Where Name='NULL';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> Select * from Persons;
++----------+----------+---------+------+-------+
+| PersonID | Name     | Address | Age  | Bike  |
++----------+----------+---------+------+-------+
+|        2 | Kaustubh | Mumbai  |   22 | NULL  |
+|        3 | Pratik   | Pimpri  |   24 | NULL  |
+|     NULL | NULL     | NULL    | NULL | MT-15 |
++----------+----------+---------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> Insert Into Persons Values (4,'Shiv','Pabal',4,'MT-15');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> Select * from Persons;
++----------+----------+---------+------+-------+
+| PersonID | Name     | Address | Age  | Bike  |
++----------+----------+---------+------+-------+
+|        2 | Kaustubh | Mumbai  |   22 | NULL  |
+|        3 | Pratik   | Pimpri  |   24 | NULL  |
+|     NULL | NULL     | NULL    | NULL | MT-15 |
+|        4 | Shiv     | Pabal   |    4 | MT-15 |
++----------+----------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Delete From Persons Where PersonID=NULL;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> Select * from Persons;
++----------+----------+---------+------+-------+
+| PersonID | Name     | Address | Age  | Bike  |
++----------+----------+---------+------+-------+
+|        2 | Kaustubh | Mumbai  |   22 | NULL  |
+|        3 | Pratik   | Pimpri  |   24 | NULL  |
+|     NULL | NULL     | NULL    | NULL | MT-15 |
+|        4 | Shiv     | Pabal   |    4 | MT-15 |
++----------+----------+---------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Alter Table Persons Drop Bike;
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Select * from Persons;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        2 | Kaustubh | Mumbai  |   22 |
+|        3 | Pratik   | Pimpri  |   24 |
+|     NULL | NULL     | NULL    | NULL |
+|        4 | Shiv     | Pabal   |    4 |
++----------+----------+---------+------+
+4 rows in set (0.00 sec)
+
+

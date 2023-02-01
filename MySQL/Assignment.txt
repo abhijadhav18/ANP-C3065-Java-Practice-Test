@@ -239,4 +239,3 @@ mysql> Select * from Persons;
 +----------+----------+---------+------+
 4 rows in set (0.00 sec)
 
-

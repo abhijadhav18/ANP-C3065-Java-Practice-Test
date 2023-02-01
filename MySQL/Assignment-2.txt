@@ -1,0 +1,173 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use db1;
+Database changed
+mysql> create table school (S_no int,School_Name varchar(50));
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> desc school;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| S_no        | int         | YES  |     | NULL    |       |
+| School_Name | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.18 sec)
+
+mysql> Insert into schools Values (1,'S.B.V.M.Pabal');
+ERROR 1146 (42S02): Table 'db1.schools' doesn't exist
+mysql> Insert into school Values (1,'S.B.V.M.Pabal');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> Insert into school Values (1,'B.H.Chate Jr College');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> Insert into school Values (2,'B.H.Chate Jr College');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> Insert into school Values (3,'Pius Jr College');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from school;
++------+----------------------+
+| S_no | School_Name          |
++------+----------------------+
+|    1 | S.B.V.M.Pabal        |
+|    1 | B.H.Chate Jr College |
+|    2 | B.H.Chate Jr College |
+|    3 | Pius Jr College      |
++------+----------------------+
+4 rows in set (0.00 sec)
+
+mysql> Delete from school Where S_no='1';
+Query OK, 2 rows affected (0.06 sec)
+
+mysql> select * from school;
++------+----------------------+
+| S_no | School_Name          |
++------+----------------------+
+|    2 | B.H.Chate Jr College |
+|    3 | Pius Jr College      |
++------+----------------------+
+2 rows in set (0.00 sec)
+
+mysql> Insert into school Values (1,'B.H.Chate Jr College');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from school;
++------+----------------------+
+| S_no | School_Name          |
++------+----------------------+
+|    2 | B.H.Chate Jr College |
+|    3 | Pius Jr College      |
+|    1 | B.H.Chate Jr College |
++------+----------------------+
+3 rows in set (0.00 sec)
+
+mysql> Delete from school Where S_no='1';
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from school;
++------+----------------------+
+| S_no | School_Name          |
++------+----------------------+
+|    2 | B.H.Chate Jr College |
+|    3 | Pius Jr College      |
++------+----------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Persons;
++----------+----------+---------+------+
+| PersonID | Name     | Address | Age  |
++----------+----------+---------+------+
+|        2 | Kaustubh | Mumbai  |   22 |
+|        3 | Pratik   | Pimpri  |   24 |
+|     NULL | NULL     | NULL    | NULL |
+|        4 | Shiv     | Pabal   |    4 |
++----------+----------+---------+------+
+4 rows in set (0.04 sec)
+
+mysql> Select Persons.Name,school.School_Name From Persons INNER JOIN school ON Persons.PersonID=school.S_n0;
+ERROR 1054 (42S22): Unknown column 'school.S_n0' in 'on clause'
+mysql> Select Persons.Name,school.School_Name From Persons INNER JOIN school ON Persons.PersonID=school.S_no;
++----------+----------------------+
+| Name     | School_Name          |
++----------+----------------------+
+| Kaustubh | B.H.Chate Jr College |
+| Pratik   | Pius Jr College      |
++----------+----------------------+
+2 rows in set (0.02 sec)
+
+mysql> Select Persons.Name,school.School_Name From Persons LEFT JOIN school ON Persons.PersonID=school.S_no;
++----------+----------------------+
+| Name     | School_Name          |
++----------+----------------------+
+| Kaustubh | B.H.Chate Jr College |
+| Pratik   | Pius Jr College      |
+| NULL     | NULL                 |
+| Shiv     | NULL                 |
++----------+----------------------+
+4 rows in set (0.01 sec)
+
+mysql> Select Persons.Name,school.School_Name From Persons RIGHT JOIN school ON Persons.PersonID=school.S_no;
++----------+----------------------+
+| Name     | School_Name          |
++----------+----------------------+
+| Kaustubh | B.H.Chate Jr College |
+| Pratik   | Pius Jr College      |
++----------+----------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select Persons.Name,school.School_Name From Persons CROSS JOIN school ON Persons.PersonID=school.S_no;
++----------+----------------------+
+| Name     | School_Name          |
++----------+----------------------+
+| Kaustubh | B.H.Chate Jr College |
+| Pratik   | Pius Jr College      |
++----------+----------------------+
+2 rows in set (0.00 sec)
+
+mysql> Select Persons.Name,school.School_Name From Persons FULL JOIN school ON Persons.PersonID=school.S_no;
+ERROR 1054 (42S22): Unknown column 'Persons.Name' in 'field list'
+mysql> Select * From Persons FULL JOIN school;
++----------+----------+---------+------+------+----------------------+
+| PersonID | Name     | Address | Age  | S_no | School_Name          |
++----------+----------+---------+------+------+----------------------+
+|        2 | Kaustubh | Mumbai  |   22 |    3 | Pius Jr College      |
+|        2 | Kaustubh | Mumbai  |   22 |    2 | B.H.Chate Jr College |
+|        3 | Pratik   | Pimpri  |   24 |    3 | Pius Jr College      |
+|        3 | Pratik   | Pimpri  |   24 |    2 | B.H.Chate Jr College |
+|     NULL | NULL     | NULL    | NULL |    3 | Pius Jr College      |
+|     NULL | NULL     | NULL    | NULL |    2 | B.H.Chate Jr College |
+|        4 | Shiv     | Pabal   |    4 |    3 | Pius Jr College      |
+|        4 | Shiv     | Pabal   |    4 |    2 | B.H.Chate Jr College |
++----------+----------+---------+------+------+----------------------+
+8 rows in set, 1 warning (0.00 sec)
+
+mysql> Select * From Persons CROSS JOIN school;
++----------+----------+---------+------+------+----------------------+
+| PersonID | Name     | Address | Age  | S_no | School_Name          |
++----------+----------+---------+------+------+----------------------+
+|        2 | Kaustubh | Mumbai  |   22 |    3 | Pius Jr College      |
+|        2 | Kaustubh | Mumbai  |   22 |    2 | B.H.Chate Jr College |
+|        3 | Pratik   | Pimpri  |   24 |    3 | Pius Jr College      |
+|        3 | Pratik   | Pimpri  |   24 |    2 | B.H.Chate Jr College |
+|     NULL | NULL     | NULL    | NULL |    3 | Pius Jr College      |
+|     NULL | NULL     | NULL    | NULL |    2 | B.H.Chate Jr College |
+|        4 | Shiv     | Pabal   |    4 |    3 | Pius Jr College      |
+|        4 | Shiv     | Pabal   |    4 |    2 | B.H.Chate Jr College |
++----------+----------+---------+------+------+----------------------+
+8 rows in set (0.00 sec)
+
+mysql>
